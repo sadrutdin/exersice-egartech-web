@@ -1,0 +1,12 @@
+<binding name="binding" package="com.zaynukov.dev.obj.jibx" trim-whitespace="true">
+    <mapping class="com.zaynukov.dev.obj.jibx.Products" name="products">
+        <collection name="product-list" field="list" factory="com.zaynukov.dev.obj.jibx.Products.listFactory">
+            <structure type="com.zaynukov.dev.obj.jibx.ProductItem" name="product">
+                <value name="serial-id" field="serialId"/>
+                <value name="product-name" field="productName"/>
+                <value name="product-description" field="description"/>
+                <value name="date" field="date"/>
+            </structure>
+        </collection>
+    </mapping>
+</binding>

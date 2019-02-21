@@ -1,0 +1,54 @@
+<!--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+-->
+<!DOCTYPE html>
+
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://java.sun.com/jsf/core"
+>
+
+
+<h:head>
+
+    <!-- For Bootstrap responsive grid -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>-->
+
+</h:head>
+
+<h:body>
+
+        <b:container styleClass="mx-10 my-10">
+            <h:form>
+            <b:dataTable var="p" value="#{productServiceImpl.getProductList(0,10)}">
+                <f:facet name="header">
+                    <tr>
+                        <th>ID заказа</th>
+                        <th>Имя заказчика</th>
+                        <th>Адрес заказчика</th>
+                        <th>Количество</th>
+                        <th>Общая сумма заказа</th>
+                        <th>Дата создания</th>
+                        <th>Серийный номер</th>
+                        <th>Название товара</th>
+                        <th>Описание</th>
+                        <th>Дата серийного производства</th>
+                    </tr>
+                </f:facet>
+                <b:dataTableColumn value="#{p.id}" order="asc"/>
+                <b:dataTableColumn value="#{p.customerName}"/>
+                <b:dataTableColumn value="#{p.customerAddress}"/>
+                <b:dataTableColumn value="#{p.count}"/>
+                <b:dataTableColumn value="#{p.sum}"/>
+                <b:dataTableColumn value="#{p.createDateTime}"/>
+                <b:dataTableColumn value="#{p.serialId}"/>
+                <b:dataTableColumn value="#{p.productName}"/>
+                <b:dataTableColumn value="#{p.description}"/>
+                <b:dataTableColumn value="#{p.dateOfMassProduction}"/>
+            </b:dataTable>
+            </h:form>
+        </b:container>
+
+</h:body>
+
+</html>

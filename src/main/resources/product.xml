@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+    <product-list>
+        <product>
+            <serial-id>serial-1</serial-id>
+            <product-name>Coca-Cola</product-name>
+            <product-description>Drink</product-description>
+            <date>29.01.1892</date>
+        </product>
+        <product>
+            <serial-id>serial-2</serial-id>
+            <product-name>Toyota</product-name>
+            <product-description>Auto Brand</product-description>
+            <date>28.08.1937</date>
+        </product>
+        <product>
+            <serial-id>serial-3</serial-id>
+            <product-name>Google</product-name>
+            <product-description>Web-Company</product-description>
+            <date>04.09.1998</date>
+        </product>
+    </product-list>
+</products>
