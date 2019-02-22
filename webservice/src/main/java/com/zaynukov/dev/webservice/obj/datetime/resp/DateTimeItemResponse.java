@@ -9,12 +9,12 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java class for yourDateTimeType complex type.
+ * <p>Java class for dateTimeType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="yourDateTimeType">
+ * &lt;complexType name="dateTimeType">
  *   &lt;simpleContent>
  *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
  *       &lt;attribute name="timeZone" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -26,22 +26,24 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "yourDateTimeType", propOrder = {
+@XmlType(name = "dateTimeType", propOrder = {
     "value"
 })
-public class YourDateTimeResponse {
-    public YourDateTimeResponse() {
-    }
+public class DateTimeItemResponse {
 
-    public YourDateTimeResponse(String value, String timeZone) {
-        this.value = value;
-        this.timeZone = timeZone;
-    }
 
-    @XmlValue
-    protected String value;
     @XmlAttribute(name = "timeZone")
     protected String timeZone;
+    @XmlValue
+    protected String value;
+
+    public DateTimeItemResponse() {
+    }
+
+    public DateTimeItemResponse(String timeZone, String value) {
+        this.timeZone = timeZone;
+        this.value = value;
+    }
 
     /**
      * Gets the value of the value property.

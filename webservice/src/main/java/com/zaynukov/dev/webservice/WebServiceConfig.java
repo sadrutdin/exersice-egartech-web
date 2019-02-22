@@ -30,7 +30,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         DefaultWsdl11Definition wsdlDefinition = new DefaultWsdl11Definition();
         wsdlDefinition.setPortTypeName("DateServicePort");
         wsdlDefinition.setLocationUri("/ws");
-        wsdlDefinition.setTargetNamespace("http://ns.dev.zaynukov.com/");
+        wsdlDefinition.setTargetNamespace("http://dateservice.ws.dev.zaynukov.com");
         wsdlDefinition.setSchema(currentDateSchema);
         return wsdlDefinition;
     }

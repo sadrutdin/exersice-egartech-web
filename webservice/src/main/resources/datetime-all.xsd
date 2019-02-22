@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-           targetNamespace="http://service.webservice.dev.zaynukov.com"
+           targetNamespace="http://dateservice.ws.dev.zaynukov.com"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <xs:element name="current-datetimes" type="current-datetimesType"/>
-    <xs:element name="my-current-datetime" type="my-current-datetimeType"/>
+    <xs:element name="myCurrentDateTime" type="myCurrentDateTimeType"/>
+    <xs:complexType name="myCurrentDateTimeType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="myTimeZone"/>
+        </xs:sequence>
+    </xs:complexType>
+<!--
 
-    <xs:complexType name="my-current-datetimeType">
-        <xs:sequence>
-            <xs:element type="xs:string" name="my-timezone"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="your-datetimeType">
+    <xs:element name="currentDateTimes" type="currentDateTimesType"/>
+    <xs:complexType name="yourDateTimeType">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute type="xs:string" name="timezone"/>
+                <xs:attribute type="xs:string" name="timeZone"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-    <xs:complexType name="datetimeType">
+    <xs:complexType name="dateTimeType">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute type="xs:string" name="timezone" use="optional"/>
+                <xs:attribute type="xs:string" name="timeZone" use="optional"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-    <xs:complexType name="other-datetimeType">
+    <xs:complexType name="otherDateTimeType">
         <xs:sequence>
-            <xs:element type="datetimeType" name="datetime" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="dateTimeType" name="dateTime" maxOccurs="unbounded" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="current-datetimesType">
+    <xs:complexType name="currentDateTimesType">
         <xs:sequence>
-            <xs:element type="your-datetimeType" name="your-datetime"/>
-            <xs:element type="other-datetimeType" name="other-datetime"/>
+            <xs:element type="yourDateTimeType" name="yourDateTime"/>
+            <xs:element type="otherDateTimeType" name="otherDateTime"/>
         </xs:sequence>
     </xs:complexType>
+-->
 
 </xs:schema>

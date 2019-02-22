@@ -2,8 +2,8 @@ package com.zaynukov.dev.webservice.service;
 
 import com.zaynukov.dev.webservice.obj.datetime.req.CurrentDateTimeRootRequest;
 import com.zaynukov.dev.webservice.obj.datetime.resp.CurrentDateTimeRootResponse;
-import com.zaynukov.dev.webservice.obj.datetime.resp.DateTimeItemReponse;
-import com.zaynukov.dev.webservice.obj.datetime.resp.OtherDateTimesResponse;
+import com.zaynukov.dev.webservice.obj.datetime.resp.DateTimeItemResponse;
+import com.zaynukov.dev.webservice.obj.datetime.resp.OtherDateTimeResponse;
 import com.zaynukov.dev.webservice.obj.datetime.resp.YourDateTimeResponse;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ public class DateServiceImpl implements DateService {
 
     @Override
     public CurrentDateTimeRootResponse currentDates(CurrentDateTimeRootRequest response) {
-        String timeZone = response.getMyTimezone();
+        String timeZone = response.getMyTimeZone();
 
         OffsetDateTime dateObject = OffsetDateTime.now(ZoneOffset.UTC);
 
@@ -40,11 +40,11 @@ public class DateServiceImpl implements DateService {
 
         YourDateTimeResponse yourDateTimeResponse = new YourDateTimeResponse(userCurrentDateTime, timeZone);
 
-        OtherDateTimesResponse otherDateTimesReponse = new OtherDateTimesResponse();
-        List<DateTimeItemReponse> otherDateTimes = otherDateTimesReponse.getDatetime();
+        OtherDateTimeResponse otherDateTimesReponse = new OtherDateTimeResponse();
+        List<DateTimeItemResponse> otherDateTimeList = otherDateTimesReponse.getDateTime();
 
         for (Map.Entry<String, String> entry : currentDatesMap.entrySet()) {
-            otherDateTimes.add(new DateTimeItemReponse(entry.getKey(), entry.getValue()));
+            otherDateTimeList.add(new DateTimeItemResponse(entry.getKey(), entry.getValue()));
         }
 
         return new CurrentDateTimeRootResponse(yourDateTimeResponse, otherDateTimesReponse);

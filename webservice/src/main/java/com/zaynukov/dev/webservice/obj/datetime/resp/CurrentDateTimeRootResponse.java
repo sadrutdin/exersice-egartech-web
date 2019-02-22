@@ -5,82 +5,91 @@ import javax.xml.bind.annotation.*;
 
 
 /**
- * <p>Java class for current-datetimesType complex type.
- *
+ * <p>Java class for currentDateTimesType complex type.
+ * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- *
+ * 
  * <pre>
- * &lt;complexType name="current-datetimesType">
+ * &lt;complexType name="currentDateTimesType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="your-datetime" type="{}your-datetimeType"/>
- *         &lt;element name="other-datetime" type="{}other-datetimeType"/>
+ *         &lt;element name="yourDateTime" type="{}yourDateTimeType"/>
+ *         &lt;element name="otherDateTime" type="{}otherDateTimeType"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "current-datetimesType", propOrder = {
-        "yourDatetime",
-        "otherDatetime"
+@XmlType(name = "currentDateTimesType", propOrder = {
+    "yourDateTime",
+    "otherDateTime"
 })
-@XmlRootElement(namespace = "http://ns.dev.zaynukov.com/", name = "current-datetimes")
+@XmlRootElement(name="currentDateTimes", namespace = "http://dateservice.ws.dev.zaynukov.com")
 public class CurrentDateTimeRootResponse {
-
     public CurrentDateTimeRootResponse() {
     }
 
-    public CurrentDateTimeRootResponse(YourDateTimeResponse yourDatetime, OtherDateTimesResponse otherDatetime) {
-        this.yourDatetime = yourDatetime;
-        this.otherDatetime = otherDatetime;
+    public CurrentDateTimeRootResponse(YourDateTimeResponse yourDateTime, OtherDateTimeResponse otherDateTime) {
+        this.yourDateTime = yourDateTime;
+        this.otherDateTime = otherDateTime;
     }
 
-    @XmlElement(name = "your-datetime", required = true)
-    protected YourDateTimeResponse yourDatetime;
-    @XmlElement(name = "other-datetime", required = true)
-    protected OtherDateTimesResponse otherDatetime;
+    @XmlElement(required = true)
+    protected YourDateTimeResponse yourDateTime;
+    @XmlElement(required = true)
+    protected OtherDateTimeResponse otherDateTime;
 
     /**
-     * Gets the value of the yourDatetime property.
-     *
-     * @return possible object is
-     * {@link YourDateTimeResponse }
+     * Gets the value of the yourDateTime property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link YourDateTimeResponse }
+     *     
      */
-    public YourDateTimeResponse getYourDatetime() {
-        return yourDatetime;
-    }
-
-    /**
-     * Sets the value of the yourDatetime property.
-     *
-     * @param value allowed object is
-     *              {@link YourDateTimeResponse }
-     */
-    public void setYourDatetime(YourDateTimeResponse value) {
-        this.yourDatetime = value;
+    public YourDateTimeResponse getYourDateTime() {
+        return yourDateTime;
     }
 
     /**
-     * Gets the value of the otherDatetime property.
-     *
-     * @return possible object is
-     * {@link OtherDateTimesResponse }
+     * Sets the value of the yourDateTime property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link YourDateTimeResponse }
+     *     
      */
-    public OtherDateTimesResponse getOtherDatetime() {
-        return otherDatetime;
+    public void setYourDateTime(YourDateTimeResponse value) {
+        this.yourDateTime = value;
     }
 
     /**
-     * Sets the value of the otherDatetime property.
-     *
-     * @param value allowed object is
-     *              {@link OtherDateTimesResponse }
+     * Gets the value of the otherDateTime property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link OtherDateTimeResponse }
+     *     
      */
-    public void setOtherDatetime(OtherDateTimesResponse value) {
-        this.otherDatetime = value;
+    public OtherDateTimeResponse getOtherDateTime() {
+        return otherDateTime;
+    }
+
+    /**
+     * Sets the value of the otherDateTime property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link OtherDateTimeResponse }
+     *     
+     */
+    public void setOtherDateTime(OtherDateTimeResponse value) {
+        this.otherDateTime = value;
     }
 
 }

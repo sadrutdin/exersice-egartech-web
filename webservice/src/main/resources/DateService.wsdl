@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://dateservice.ws.dev.zaynukov.com"
+                  xmlns:ax23="http://resp.datetime.obj.webservice.dev.zaynukov.com/xsd"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  targetNamespace="http://dateservice.ws.dev.zaynukov.com">
+    <wsdl:types>
+        <xs:schema xmlns:ax22="http://req.datetime.obj.webservice.dev.zaynukov.com/xsd"
+                   xmlns:ax24="http://resp.datetime.obj.webservice.dev.zaynukov.com/xsd"
+                   attributeFormDefault="qualified" elementFormDefault="qualified"
+                   targetNamespace="http://dateservice.ws.dev.zaynukov.com">
+            <xs:import namespace="http://req.datetime.obj.webservice.dev.zaynukov.com/xsd"/>
+            <xs:import namespace="http://resp.datetime.obj.webservice.dev.zaynukov.com/xsd"/>
+            <xs:element name="currentDate">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="request" nillable="true"
+                                    type="ax22:CurrentDateTimeRootRequest"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="currentDateResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true"
+                                    type="ax24:CurrentDateTimeRootResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+                   targetNamespace="http://req.datetime.obj.webservice.dev.zaynukov.com/xsd">
+            <xs:complexType name="CurrentDateTimeRootRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="myTimeZone" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+                   targetNamespace="http://resp.datetime.obj.webservice.dev.zaynukov.com/xsd">
+            <xs:complexType name="CurrentDateTimeRootResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="otherDateTime" nillable="true" type="ax23:OtherDateTimeResponse"/>
+                    <xs:element minOccurs="0" name="yourDateTime" nillable="true" type="ax23:YourDateTimeResponse"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="OtherDateTimeResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="dateTime" nillable="true"
+                                type="ax23:DateTimeItemResponse"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DateTimeItemResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="timeZone" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="YourDateTimeResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="timeZone" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="currentDateRequest">
+        <wsdl:part name="parameters" element="ns:currentDate"/>
+    </wsdl:message>
+    <wsdl:message name="currentDateResponse">
+        <wsdl:part name="parameters" element="ns:currentDateResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="DateServiceEndpointPortType">
+        <wsdl:operation name="currentDate">
+            <wsdl:input message="ns:currentDateRequest" wsaw:Action="urn:currentDate"/>
+            <wsdl:output message="ns:currentDateResponse" wsaw:Action="urn:currentDateResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="DateServiceEndpointSoap11Binding" type="ns:DateServiceEndpointPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="currentDate">
+            <soap:operation soapAction="urn:currentDate" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="DateServiceEndpointSoap12Binding" type="ns:DateServiceEndpointPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="currentDate">
+            <soap12:operation soapAction="urn:currentDate" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="DateServiceEndpointHttpBinding" type="ns:DateServiceEndpointPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="currentDate">
+            <http:operation location="currentDate"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="DateServiceEndpoint">
+        <wsdl:port name="DateServiceEndpointHttpSoap11Endpoint" binding="ns:DateServiceEndpointSoap11Binding">
+            <soap:address location="http://localhost:8080//ws"/>
+        </wsdl:port>
+        <wsdl:port name="DateServiceEndpointHttpSoap12Endpoint" binding="ns:DateServiceEndpointSoap12Binding">
+            <soap12:address location="http://localhost:8080//ws"/>
+        </wsdl:port>
+        <wsdl:port name="DateServiceEndpointHttpEndpoint" binding="ns:DateServiceEndpointHttpBinding">
+            <http:address location="http://localhost:8080//ws"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
