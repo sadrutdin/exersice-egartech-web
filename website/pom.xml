@@ -40,10 +40,10 @@
     </repositories>
 
     <properties>
-<java.version>8</java.version>
-<joinfaces.version>4.0.1</joinfaces.version>
-<project.basedir>website/</project.basedir>
-<start-class>com.zaynukov.dev.SpringBootRunner</start-class>
+        <java.version>8</java.version>
+        <joinfaces.version>4.0.1</joinfaces.version>
+        <project.basedir>website/</project.basedir>
+        <start-class>com.zaynukov.dev.SpringBootRunner</start-class>
     </properties>
 
     <dependencies>
@@ -173,6 +173,19 @@
 
                 </dependencies>
 
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>${project.basedir}/src/webapp</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
             </plugin>
 
             <plugin>
