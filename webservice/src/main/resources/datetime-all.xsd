@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+<xs:schema elementFormDefault="qualified"
            targetNamespace="http://dateservice.ws.dev.zaynukov.com"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <xs:element name="myCurrentDateTime" type="myCurrentDateTimeType"/>
-    <xs:complexType name="myCurrentDateTimeType">
-        <xs:sequence>
-            <xs:element type="xs:string" name="myTimeZone"/>
-        </xs:sequence>
-    </xs:complexType>
-<!--
+    <xs:element name="myCurrentDateTime">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:string" name="myTimeZone"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
 
     <xs:element name="currentDateTimes" type="currentDateTimesType"/>
+
+
+
     <xs:complexType name="yourDateTimeType">
         <xs:simpleContent>
             <xs:extension base="xs:string">
@@ -37,6 +41,5 @@
             <xs:element type="otherDateTimeType" name="otherDateTime"/>
         </xs:sequence>
     </xs:complexType>
--->
 
 </xs:schema>

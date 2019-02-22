@@ -6,9 +6,9 @@ import javax.xml.bind.annotation.*;
 
 /**
  * <p>Java class for myCurrentDateTimeType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="myCurrentDateTimeType">
  *   &lt;complexContent>
@@ -20,14 +20,12 @@ import javax.xml.bind.annotation.*;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "myCurrentDateTimeType", propOrder = {
-    "myTimeZone"
+@XmlType(name = "", propOrder = {
+        "myTimeZone"
 })
-@XmlRootElement(name="myCurrentDateTime", namespace = "http://dateservice.ws.dev.zaynukov.com")
+@XmlRootElement(name = "myCurrentDateTime", namespace = "http://dateservice.ws.dev.zaynukov.com")
 public class CurrentDateTimeRootRequest {
     public CurrentDateTimeRootRequest() {
     }
@@ -36,16 +34,14 @@ public class CurrentDateTimeRootRequest {
         this.myTimeZone = myTimeZone;
     }
 
-    @XmlElement(required = true)
+    @XmlElement(required = true, namespace = "http://dateservice.ws.dev.zaynukov.com")
     protected String myTimeZone;
 
     /**
      * Gets the value of the myTimeZone property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getMyTimeZone() {
         return myTimeZone;
@@ -53,11 +49,9 @@ public class CurrentDateTimeRootRequest {
 
     /**
      * Sets the value of the myTimeZone property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setMyTimeZone(String value) {
         this.myTimeZone = value;

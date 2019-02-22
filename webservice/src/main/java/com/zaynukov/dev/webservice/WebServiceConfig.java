@@ -9,8 +9,9 @@ import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
-import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
+import org.springframework.xml.xsd.XsdSchemaCollection;
+import org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection;
 
 import javax.servlet.Servlet;
 
@@ -25,18 +26,23 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean<>(servlet, "/ws/*");
     }
 
+
     @Bean(name = "currentDates")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema currentDateSchema) {
-        DefaultWsdl11Definition wsdlDefinition = new DefaultWsdl11Definition();
-        wsdlDefinition.setPortTypeName("DateServicePort");
-        wsdlDefinition.setLocationUri("/ws");
-        wsdlDefinition.setTargetNamespace("http://dateservice.ws.dev.zaynukov.com");
-        wsdlDefinition.setSchema(currentDateSchema);
-        return wsdlDefinition;
+    public DefaultWsdl11Definition defaultWsdl11Definition() {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("DateServicePort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://dateservice.ws.dev.zaynukov.com");
+        wsdl11Definition.setSchemaCollection(updateContactXsd());
+        return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema countriesSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("datetime-all.xsd"));
+    public XsdSchemaCollection updateContactXsd() {
+        CommonsXsdSchemaCollection xsds = new CommonsXsdSchemaCollection(
+                new ClassPathResource("datetime-all.xsd")
+        );
+        xsds.setInline(true);
+        return xsds;
     }
 }
