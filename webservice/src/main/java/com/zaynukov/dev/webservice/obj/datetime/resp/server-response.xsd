@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="current-datetimes" type="current-datetimesType"/>
+    <xs:complexType name="your-datetimeType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="timezone"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="datetimeType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="timezone" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="other-datetimeType">
+        <xs:sequence>
+            <xs:element type="datetimeType" name="datetime" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="current-datetimesType">
+        <xs:sequence>
+            <xs:element type="your-datetimeType" name="your-datetime"/>
+            <xs:element type="other-datetimeType" name="other-datetime"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

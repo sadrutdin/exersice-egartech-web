@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<current-datetimes>
+    <your-datetime timezone="UTC+3">11:22 26.02.1999</your-datetime>
+    <other-datetime>
+        <datetime timezone="UTC-1">11:22 26.02.1999</datetime>
+        <datetime timezone="UTC">11:22 26.02.1999</datetime>
+        <datetime timezone="UTC+1">11:22 26.02.1999</datetime>
+    </other-datetime>
+</current-datetimes>

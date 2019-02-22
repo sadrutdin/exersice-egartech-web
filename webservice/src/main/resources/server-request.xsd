@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="my-current-datetime" type="my-current-datetimeType"/>
+  <xs:complexType name="my-current-datetimeType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="my-timezone"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+</xs:schema>
