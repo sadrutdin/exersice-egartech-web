@@ -7,12 +7,11 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DateServiceImpl implements DateService {
+public class DateTimeServiceImpl implements DateTimeService {
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 
     @Override
     public String getCurrentDateTime(GetCurrentDateTimeRequest response) {
-
         return ZonedDateTime.now(ZoneId.of(response.getTimeZone())).format(dateTimeFormatter);
     }
 }
