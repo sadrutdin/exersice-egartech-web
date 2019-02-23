@@ -9,8 +9,10 @@ public class CreatedOrderDetailsEntity {
     private long id;
     private String serialId;
     private Integer count;
+    private CreatedOrderEntity order;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public long getId() {
         return id;
@@ -40,6 +42,16 @@ public class CreatedOrderDetailsEntity {
         this.count = count;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    public CreatedOrderEntity getOrder() {
+        return order;
+    }
+
+    public void setOrder(CreatedOrderEntity orderEntity) {
+        this.order = orderEntity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,11 +59,22 @@ public class CreatedOrderDetailsEntity {
         CreatedOrderDetailsEntity that = (CreatedOrderDetailsEntity) o;
         return id == that.id &&
                 Objects.equals(serialId, that.serialId) &&
-                Objects.equals(count, that.count);
+                Objects.equals(count, that.count) &&
+                Objects.equals(order, that.order);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, serialId, count);
+        return Objects.hash(id, serialId, count, order);
+    }
+
+    @Override
+    public String toString() {
+        return "CreatedOrderDetailsEntity{" +
+                "id=" + id +
+                ", serialId='" + serialId + '\'' +
+                ", count=" + count +
+                ", orderId=" + order.toString() +
+                '}';
     }
 }
