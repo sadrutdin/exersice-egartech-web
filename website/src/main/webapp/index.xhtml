@@ -18,9 +18,9 @@
 
 <h:body>
 
-        <b:container styleClass="mx-10 my-10">
-            <h:form>
-            <b:dataTable var="p" value="#{productServiceImpl.getProductList(0,10)}">
+    <b:container styleClass="mx-10 my-10">
+        <h:form>
+            <b:dataTable var="o" value="#{productServiceImpl.getProductList(0,10)}">
                 <f:facet name="header">
                     <tr>
                         <th>ID заказа</th>
@@ -35,19 +35,20 @@
                         <th>Дата серийного производства</th>
                     </tr>
                 </f:facet>
-                <b:dataTableColumn value="#{p.id}" order="asc"/>
-                <b:dataTableColumn value="#{p.customerName}"/>
-                <b:dataTableColumn value="#{p.customerAddress}"/>
-                <b:dataTableColumn value="#{p.count}"/>
-                <b:dataTableColumn value="#{p.sum}"/>
-                <b:dataTableColumn value="#{p.createDateTime}"/>
-                <b:dataTableColumn value="#{p.serialId}"/>
-                <b:dataTableColumn value="#{p.productName}"/>
-                <b:dataTableColumn value="#{p.description}"/>
-                <b:dataTableColumn value="#{p.dateOfMassProduction}"/>
+                <b:dataTableColumn value="#{o.orderId}" order="asc"/>
+                <b:dataTableColumn value="#{o.customerName}"/>
+                <b:dataTableColumn value="#{o.customerAddress}"/>
+                <b:dataTableColumn value="#{o.sum}"/>
+                <b:dataTableColumn value="#{o.createdDate}"/>
+
+                <b:dataTable var="p" value="#{o.productList}">
+                    <b:dataTableColumn value="#{p.serialId}"/>
+                    <b:dataTableColumn value="#{p.count}"/>
+                </b:dataTable>
+
             </b:dataTable>
-            </h:form>
-        </b:container>
+        </h:form>
+    </b:container>
 
 </h:body>
 

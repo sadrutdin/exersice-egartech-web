@@ -14,5 +14,6 @@
 
     <mapping class="com.zaynukov.dev.dbmodel.CreatedOrderEntity"/>
     <mapping class="com.zaynukov.dev.dbmodel.CreatedOrderDetailsEntity"/>
+    <mapping class="com.zaynukov.dev.dbmodel.ProductInfoEntity"/>
   </session-factory>
 </hibernate-configuration>

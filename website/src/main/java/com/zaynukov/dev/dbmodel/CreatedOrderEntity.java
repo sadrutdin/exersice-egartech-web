@@ -2,6 +2,7 @@ package com.zaynukov.dev.dbmodel;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -12,9 +13,21 @@ public class CreatedOrderEntity {
     private String customerAddress;
     private long sum;
     private Timestamp createdDatetime;
-    private CreatedOrderDetailsEntity details;
+    private List<CreatedOrderDetailsEntity> details;
+
+    public CreatedOrderEntity() {
+    }
+
+    public CreatedOrderEntity(String customerName, String customerAddress, long sum, Timestamp createdDatetime, List<CreatedOrderDetailsEntity> details) {
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.sum = sum;
+        this.createdDatetime = createdDatetime;
+        this.details = details;
+    }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public long getId() {
         return id;
@@ -81,14 +94,24 @@ public class CreatedOrderEntity {
         return Objects.hash(id, customerName, customerAddress, sum, createdDatetime);
     }
 
-    @OneToOne
-    @JoinColumn(name = "details", referencedColumnName = "id")
-    public CreatedOrderDetailsEntity getDetails() {
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
+    public List<CreatedOrderDetailsEntity> getDetails() {
         return details;
     }
 
-    public void setDetails(CreatedOrderDetailsEntity details) {
+    public void setDetails(List<CreatedOrderDetailsEntity> details) {
         this.details = details;
     }
 
+    @Override
+    public String toString() {
+        return "CreatedOrderEntity{" +
+                "id=" + id +
+                ", customerName='" + customerName + '\'' +
+                ", customerAddress='" + customerAddress + '\'' +
+                ", sum=" + sum +
+                ", createdDatetime=" + createdDatetime +
+                ", details=" + details +
+                '}';
+    }
 }
