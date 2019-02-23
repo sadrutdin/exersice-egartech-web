@@ -4,7 +4,7 @@
 -->
 <!DOCTYPE html>
 
-<html xmlns:h="http://java.sun.com/jsf/html" xmlns:prime="http://primefaces.org/ui"
+<html xmlns:h="http://java.sun.com/jsf/html"
       xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://java.sun.com/jsf/core"
 >
 
@@ -18,21 +18,8 @@
 
 <h:body>
 
-    <style>
-        d-none {
-            display: none;
-        }
-    </style>
-
-
-    <b:container>
-
-        <prime:commandButton action="#{indexBean.replaceTable}" onclick="document.getElementById('that_form').classList.add('d-none')">
-            Загрузить инфо о продуктах
-        </prime:commandButton>
-
-
-        <h:form id="that_form">
+    <b:container styleClass="mx-10 my-10">
+        <h:form>
             <b:dataTable id="main" var="o" value="#{productServiceImpl.getProductList(0,10)}">
                 <f:facet name="header">
                     <tr>
@@ -41,7 +28,7 @@
                         <th>Адрес заказчика</th>
                         <th>Общая сумма заказа</th>
                         <th>Дата создания</th>
-                        <th>Список покупок</th>
+                        <th>Список продуктов</th>
                     </tr>
                 </f:facet>
                 <b:dataTableColumn value="#{o.orderId}" order="asc"/>
@@ -64,10 +51,6 @@
                 </b:dataTableColumn>
             </b:dataTable>
         </h:form>
-
-
-
-
     </b:container>
 
 </h:body>

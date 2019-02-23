@@ -77,16 +77,12 @@ class ProductServiceImpl implements ProductService {
 
         return list;
     }
+/*
 
     @PostConstruct
     public void init() {
         orderRepository.deleteAll();
         orderDetailsRepository.deleteAll();
-
-        Iterable<CreatedOrderDetailsEntity> itt = orderDetailsRepository.saveAll(Arrays.asList(new CreatedOrderDetailsEntity("serial-1111", 1000)));
-        for (CreatedOrderDetailsEntity createdOrderDetailsEntity : itt) {
-            logger.info(createdOrderDetailsEntity.toString());
-        }
 
         List<CreatedOrderEntity> orders = new ArrayList<>();
         orders.add(new CreatedOrderEntity(
@@ -128,6 +124,7 @@ class ProductServiceImpl implements ProductService {
 
         orderRepository.saveAll(orders);
     }
+*/
 
 
 }
