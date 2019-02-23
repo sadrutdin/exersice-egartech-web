@@ -2,40 +2,52 @@ package com.zaynukov.dev.service.product;
 
 import com.zaynukov.dev.dbmodel.CreatedOrderDetailsEntity;
 import com.zaynukov.dev.dbmodel.CreatedOrderEntity;
+import com.zaynukov.dev.dbmodel.ProductInfoEntity;
 import com.zaynukov.dev.obj.dto.OrderDTO;
+import com.zaynukov.dev.obj.jibx.ProductItem;
+import com.zaynukov.dev.obj.jibx.Products;
 import com.zaynukov.dev.service.product.description.ProductDescriptionService;
-import com.zaynukov.dev.service.product.repository.ProductRepository;
+import com.zaynukov.dev.service.product.repository.OrderDetailsRepository;
+import com.zaynukov.dev.service.product.repository.OrderRepository;
+import com.zaynukov.dev.service.product.repository.ProductInfoRepository;
+import com.zaynukov.dev.utils.XmlUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 @Service
 class ProductServiceImpl implements ProductService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
+    private final ProductInfoRepository productInfoRepository;
+    private final OrderRepository orderRepository;
+    private final OrderDetailsRepository orderDetailsRepository;
     private final ProductDescriptionService descriptionService;
-    private final ProductRepository productRepository;
 
     @Autowired
-    public ProductServiceImpl(ProductDescriptionService descriptionService, ProductRepository productRepository) {
+    public ProductServiceImpl(OrderRepository orderRepository, OrderDetailsRepository orderDetailsRepository, ProductDescriptionService descriptionService, ProductInfoRepository productInfoRepository) {
+        this.orderRepository = orderRepository;
+        this.orderDetailsRepository = orderDetailsRepository;
         this.descriptionService = descriptionService;
-        this.productRepository = productRepository;
+        this.productInfoRepository = productInfoRepository;
     }
 
     @Override
     public List<OrderDTO> getProductList(int page, int size) {
-        Page<CreatedOrderEntity> orderList = productRepository.findAll(PageRequest.of(page, size));
+        Page<CreatedOrderEntity> orderList = orderRepository.findAll(PageRequest.of(page, size));
         List<OrderDTO> resultList = new ArrayList<>(orderList.getSize());
         for (CreatedOrderEntity order : orderList) {
             resultList.add(new OrderDTO(order));
@@ -43,15 +55,44 @@ class ProductServiceImpl implements ProductService {
         return resultList;
     }
 
+    @Override
+    public List<ProductItem> loadAndSaveProductInfo() {
+        List<ProductItem> list;
+        try {
+            list = XmlUtils.unmarshalling(
+                    Products.class, new ClassPathResource("product.xml")
+                            .getInputStream()).getList();
+        } catch (IOException | NullPointerException e) {
+            logger.info("Ошибка при загрузке xml из ресурсов");
+            list = Collections.emptyList();
+        }
+        if (list.isEmpty()) return list;
+
+        List<ProductInfoEntity> productInfoEntityList = new ArrayList<>();
+        for (ProductItem item : list) {
+            productInfoEntityList.add(new ProductInfoEntity(item.getSerialId(), item.getProductName(),
+                    item.getDescription(), item.getDate()));
+        }
+        productInfoRepository.saveAll(productInfoEntityList);
+
+        return list;
+    }
+
     @PostConstruct
-    private void init() {
-        productRepository.deleteAll();
+    public void init() {
+        orderRepository.deleteAll();
+        orderDetailsRepository.deleteAll();
+
+        Iterable<CreatedOrderDetailsEntity> itt = orderDetailsRepository.saveAll(Arrays.asList(new CreatedOrderDetailsEntity("serial-1111", 1000)));
+        for (CreatedOrderDetailsEntity createdOrderDetailsEntity : itt) {
+            logger.info(createdOrderDetailsEntity.toString());
+        }
 
         List<CreatedOrderEntity> orders = new ArrayList<>();
         orders.add(new CreatedOrderEntity(
                 "Алексей",
                 "Екатеринбург",
-                2000L,
+                8100L,
                 new Timestamp(System.currentTimeMillis() - 10200),
                 Arrays.asList(
                         new CreatedOrderDetailsEntity("serial-1", 10),
@@ -60,8 +101,8 @@ class ProductServiceImpl implements ProductService {
         ));
 
         orders.add(new CreatedOrderEntity(
-                "Алексей",
-                "Екатеринбург",
+                "Герман",
+                "Никополь",
                 2000L,
                 new Timestamp(System.currentTimeMillis() - 26500),
                 Arrays.asList(
@@ -85,7 +126,8 @@ class ProductServiceImpl implements ProductService {
                 )
         ));
 
-
-        productRepository.saveAll(orders);
+        orderRepository.saveAll(orders);
     }
+
+
 }

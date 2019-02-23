@@ -3,7 +3,7 @@ package com.zaynukov.dev.dbmodel;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Objects;
@@ -32,7 +32,7 @@ public class ProductInfoEntity {
     public ProductInfoEntity() {
     }
 
-    public ProductInfoEntity(String serialId, String productName, String productDescription, Date serialDate) {
+    public ProductInfoEntity(String serialId, String productName, String productDescription,Date  serialDate) {
         this.serialId = serialId;
         this.productName = productName;
         this.productDescription = productDescription;
@@ -47,7 +47,7 @@ public class ProductInfoEntity {
         this.productName = productName;
         this.productDescription = productDescription;
         try {
-            this.serialDate = new Date(sdf.parse(serialDate).getTime());
+            this.serialDate = sdf.parse(serialDate);
         } catch (ParseException ignored) {
         }
     }

@@ -50,16 +50,6 @@ public class CreatedOrderDetailsEntity {
         this.count = count;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    public CreatedOrderEntity getOrder() {
-        return order;
-    }
-
-    public void setOrder(CreatedOrderEntity orderEntity) {
-        this.order = orderEntity;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,13 +57,22 @@ public class CreatedOrderDetailsEntity {
         CreatedOrderDetailsEntity that = (CreatedOrderDetailsEntity) o;
         return id == that.id &&
                 Objects.equals(serialId, that.serialId) &&
-                Objects.equals(count, that.count) &&
-                Objects.equals(order, that.order);
+                Objects.equals(count, that.count);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, serialId, count, order);
+        return Objects.hash(id, serialId, count);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id")//, referencedColumnName = "id")
+    public CreatedOrderEntity getOrder() {
+        return order;
+    }
+
+    public void setOrder(CreatedOrderEntity order) {
+        this.order = order;
     }
 
     @Override
@@ -82,7 +81,7 @@ public class CreatedOrderDetailsEntity {
                 "id=" + id +
                 ", serialId='" + serialId + '\'' +
                 ", count=" + count +
-                ", orderId=" + order.toString() +
+                ", order=" + order +
                 '}';
     }
 }

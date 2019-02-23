@@ -1,6 +1,7 @@
 package com.zaynukov.dev.service.product;
 
 import com.zaynukov.dev.obj.dto.OrderDTO;
+import com.zaynukov.dev.obj.jibx.ProductItem;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ public interface ProductService {
      * @return список продуктов
      */
     List<OrderDTO> getProductList(int page, int size);
+
+    List<ProductItem> loadAndSaveProductInfo();
 }

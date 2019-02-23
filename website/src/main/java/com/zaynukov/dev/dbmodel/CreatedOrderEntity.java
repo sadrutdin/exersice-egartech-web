@@ -1,24 +1,24 @@
 package com.zaynukov.dev.dbmodel;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "created_orders", schema = "public", catalog = "exercise")
 public class CreatedOrderEntity {
-    private long id;
+    private int id;
     private String customerName;
     private String customerAddress;
     private long sum;
-    private Timestamp createdDatetime;
+    private Date createdDatetime;
     private List<CreatedOrderDetailsEntity> details;
 
     public CreatedOrderEntity() {
     }
 
-    public CreatedOrderEntity(String customerName, String customerAddress, long sum, Timestamp createdDatetime, List<CreatedOrderDetailsEntity> details) {
+    public CreatedOrderEntity(String customerName, String customerAddress, long sum, Date createdDatetime, List<CreatedOrderDetailsEntity> details) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.sum = sum;
@@ -29,11 +29,11 @@ public class CreatedOrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -69,11 +69,11 @@ public class CreatedOrderEntity {
 
     @Basic
     @Column(name = "created_datetime")
-    public Timestamp getCreatedDatetime() {
+    public Date getCreatedDatetime() {
         return createdDatetime;
     }
 
-    public void setCreatedDatetime(Timestamp createdDatetime) {
+    public void setCreatedDatetime(Date createdDatetime) {
         this.createdDatetime = createdDatetime;
     }
 
@@ -94,24 +94,13 @@ public class CreatedOrderEntity {
         return Objects.hash(id, customerName, customerAddress, sum, createdDatetime);
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
+    @OneToMany(mappedBy = "order", targetEntity = CreatedOrderDetailsEntity.class,
+            cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     public List<CreatedOrderDetailsEntity> getDetails() {
         return details;
     }
 
     public void setDetails(List<CreatedOrderDetailsEntity> details) {
         this.details = details;
-    }
-
-    @Override
-    public String toString() {
-        return "CreatedOrderEntity{" +
-                "id=" + id +
-                ", customerName='" + customerName + '\'' +
-                ", customerAddress='" + customerAddress + '\'' +
-                ", sum=" + sum +
-                ", createdDatetime=" + createdDatetime +
-                ", details=" + details +
-                '}';
     }
 }

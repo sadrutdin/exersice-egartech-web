@@ -194,7 +194,7 @@
                 <configuration>
                     <webResources>
                         <resource>
-                            <directory>${project.basedir}/src/webapp</directory>
+                            <directory>${project.basedir}/src/main/webapp</directory>
                         </resource>
                     </webResources>
                 </configuration>

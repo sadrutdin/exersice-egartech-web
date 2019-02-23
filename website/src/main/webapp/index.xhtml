@@ -20,19 +20,14 @@
 
     <b:container styleClass="mx-10 my-10">
         <h:form>
-            <b:dataTable var="o" value="#{productServiceImpl.getProductList(0,10)}">
+            <b:dataTable id="main" var="o" value="#{productServiceImpl.getProductList(0,10)}">
                 <f:facet name="header">
                     <tr>
                         <th>ID заказа</th>
                         <th>Имя заказчика</th>
                         <th>Адрес заказчика</th>
-                        <th>Количество</th>
                         <th>Общая сумма заказа</th>
                         <th>Дата создания</th>
-                        <th>Серийный номер</th>
-                        <th>Название товара</th>
-                        <th>Описание</th>
-                        <th>Дата серийного производства</th>
                     </tr>
                 </f:facet>
                 <b:dataTableColumn value="#{o.orderId}" order="asc"/>

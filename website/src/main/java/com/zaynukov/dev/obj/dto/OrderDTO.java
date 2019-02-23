@@ -2,6 +2,7 @@ package com.zaynukov.dev.obj.dto;
 
 import com.zaynukov.dev.dbmodel.CreatedOrderEntity;
 
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
@@ -30,7 +31,7 @@ public class OrderDTO {
         this.productList = productList;
     }
 
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd/MM/yyyy");
 
     public OrderDTO(CreatedOrderEntity orderEntity) {
         this(
@@ -38,7 +39,7 @@ public class OrderDTO {
                 orderEntity.getCustomerName(),
                 orderEntity.getCustomerAddress(),
                 String.valueOf(orderEntity.getSum()),
-                orderEntity.getCreatedDatetime().toLocalDateTime().format(dateTimeFormatter),
+                sdf.format(orderEntity.getCreatedDatetime()),
                 orderEntity.getDetails().stream().map(
                         detail -> new ProductItemDTO(detail.getSerialId(), String.valueOf(detail.getCount())))
                         .collect(Collectors.toList())
