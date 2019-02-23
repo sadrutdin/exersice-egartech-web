@@ -1,7 +1,7 @@
 package com.zaynukov.dev.webservice.endpoint;
 
-import com.zaynukov.dev.webservice.obj.datetime.req.CurrentDateTimeRootRequest;
-import com.zaynukov.dev.webservice.obj.datetime.resp.CurrentDateTimeRootResponse;
+import com.zaynukov.dev.webservice.ws.request.GetCurrentDateTimeRequest;
+import com.zaynukov.dev.webservice.ws.response.GetCurrentDateTimeResponse;
 import com.zaynukov.dev.webservice.service.DateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -11,7 +11,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
 public class DateServiceEndpoint {
-    private static final String NAMESPACE_URI = "http://dateservice.ws.dev.zaynukov.com";
+    private static final String NAMESPACE_URI = "http://current-date-time.ws.dev.zaynukov.com";
 
     private final DateService dateService;
 
@@ -24,9 +24,12 @@ public class DateServiceEndpoint {
         this.dateService = dateService;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "myCurrentDateTime")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetCurrentDateTimeRequest")
     @ResponsePayload
-    public CurrentDateTimeRootResponse currentDate(@RequestPayload CurrentDateTimeRootRequest request) {
-        return dateService.currentDates(request);
+    public GetCurrentDateTimeResponse getCurrentDateTime(@RequestPayload GetCurrentDateTimeRequest request) {
+        GetCurrentDateTimeResponse getCurrentDateTimeResponse = new GetCurrentDateTimeResponse();
+        getCurrentDateTimeResponse.setCurrentDateTime(dateService.getCurrentDateTime(request));
+
+        return getCurrentDateTimeResponse;
     }
 }

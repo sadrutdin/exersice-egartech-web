@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://current-date-time.ws.dev.zaynukov.com" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="GetCurrentDateTimeRequest" type="GetCurrentDateTimeRequestType"/>
+    <xs:complexType name="GetCurrentDateTimeRequestType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="timeZone"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetCurrentDateTimeResponse" type="GetCurrentDateTimeResponseType"/>
+    <xs:complexType name="GetCurrentDateTimeResponseType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="currentDateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

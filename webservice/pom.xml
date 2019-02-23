@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>com.zaynukov.dev</groupId>
-    <artifactId>webservice</artifactId>
+    <artifactId>current-date-time-ws</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>webservice</name>
     <description>Web Service via Spring Boot</description>
