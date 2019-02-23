@@ -13,7 +13,18 @@ public class CreatedOrderEntity {
     private String customerAddress;
     private long sum;
     private Timestamp createdDatetime;
-    private List<CreatedOrderDetailsEntity> details ;
+    private List<CreatedOrderDetailsEntity> details;
+
+    public CreatedOrderEntity() {
+    }
+
+    public CreatedOrderEntity(String customerName, String customerAddress, long sum, Timestamp createdDatetime, List<CreatedOrderDetailsEntity> details) {
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.sum = sum;
+        this.createdDatetime = createdDatetime;
+        this.details = details;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package com.zaynukov.dev.service.product;
 
+import com.zaynukov.dev.dbmodel.CreatedOrderDetailsEntity;
 import com.zaynukov.dev.dbmodel.CreatedOrderEntity;
 import com.zaynukov.dev.obj.dto.OrderDTO;
 import com.zaynukov.dev.service.product.description.ProductDescriptionService;
@@ -11,8 +12,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 @Service
 class ProductServiceImpl implements ProductService {
@@ -36,5 +41,51 @@ class ProductServiceImpl implements ProductService {
             resultList.add(new OrderDTO(order));
         }
         return resultList;
+    }
+
+    @PostConstruct
+    private void init() {
+        productRepository.deleteAll();
+
+        List<CreatedOrderEntity> orders = new ArrayList<>();
+        orders.add(new CreatedOrderEntity(
+                "Алексей",
+                "Екатеринбург",
+                2000L,
+                new Timestamp(System.currentTimeMillis() - 10200),
+                Arrays.asList(
+                        new CreatedOrderDetailsEntity("serial-1", 10),
+                        new CreatedOrderDetailsEntity("serial-3", 33)
+                )
+        ));
+
+        orders.add(new CreatedOrderEntity(
+                "Алексей",
+                "Екатеринбург",
+                2000L,
+                new Timestamp(System.currentTimeMillis() - 26500),
+                Arrays.asList(
+                        new CreatedOrderDetailsEntity("serial-2", 10),
+                        new CreatedOrderDetailsEntity("serial-3", 89),
+                        new CreatedOrderDetailsEntity("serial-1", 89),
+                        new CreatedOrderDetailsEntity("serial-4", 66)
+                )
+        ));
+
+        orders.add(new CreatedOrderEntity(
+                "Марина",
+                "Ярославль",
+                3500L,
+                new Timestamp(System.currentTimeMillis() - 69020),
+                Arrays.asList(
+                        new CreatedOrderDetailsEntity("serial-1", 15),
+                        new CreatedOrderDetailsEntity("serial-5", 579),
+                        new CreatedOrderDetailsEntity("serial-6", 1),
+                        new CreatedOrderDetailsEntity("serial-7", 5)
+                )
+        ));
+
+
+        productRepository.saveAll(orders);
     }
 }

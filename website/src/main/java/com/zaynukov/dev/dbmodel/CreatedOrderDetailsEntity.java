@@ -11,6 +11,14 @@ public class CreatedOrderDetailsEntity {
     private Integer count;
     private CreatedOrderEntity order;
 
+    public CreatedOrderDetailsEntity() {
+    }
+
+    public CreatedOrderDetailsEntity(String serialId, Integer count) {
+        this.serialId = serialId;
+        this.count = count;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
