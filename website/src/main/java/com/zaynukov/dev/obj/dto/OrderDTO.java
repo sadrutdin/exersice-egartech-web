@@ -16,18 +16,18 @@ public class OrderDTO {
     private String customerAddress;
     private String sum;
     private String createdDate;
-    private List<ProductItemDTO> productItemDTOList;
+    private List<ProductItemDTO> productList;
 
     public OrderDTO() {
     }
 
-    public OrderDTO(long orderId, String customerName, String customerAddress, String sum, String createdDate, List<ProductItemDTO> productItemDTOList) {
+    public OrderDTO(long orderId, String customerName, String customerAddress, String sum, String createdDate, List<ProductItemDTO> productList) {
         this.orderId = orderId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.sum = sum;
         this.createdDate = createdDate;
-        this.productItemDTOList = productItemDTOList;
+        this.productList = productList;
     }
 
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
@@ -85,12 +85,12 @@ public class OrderDTO {
         this.createdDate = createdDate;
     }
 
-    public List<ProductItemDTO> getProductItemDTOList() {
-        return productItemDTOList;
+    public List<ProductItemDTO> getProductList() {
+        return productList;
     }
 
-    public void setProductItemDTOList(List<ProductItemDTO> productItemDTOList) {
-        this.productItemDTOList = productItemDTOList;
+    public void setProductList(List<ProductItemDTO> productList) {
+        this.productList = productList;
     }
 
     @Override
@@ -103,12 +103,12 @@ public class OrderDTO {
                 Objects.equals(customerAddress, orderDTO.customerAddress) &&
                 Objects.equals(sum, orderDTO.sum) &&
                 Objects.equals(createdDate, orderDTO.createdDate) &&
-                Objects.equals(productItemDTOList, orderDTO.productItemDTOList);
+                Objects.equals(productList, orderDTO.productList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, customerName, customerAddress, sum, createdDate, productItemDTOList);
+        return Objects.hash(orderId, customerName, customerAddress, sum, createdDate, productList);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class OrderDTO {
                 ", customerAddress='" + customerAddress + '\'' +
                 ", sum='" + sum + '\'' +
                 ", createdDate='" + createdDate + '\'' +
-                ", productItemDTOList=" + productItemDTOList +
+                ", productList=" + productList +
                 '}';
     }
 }
