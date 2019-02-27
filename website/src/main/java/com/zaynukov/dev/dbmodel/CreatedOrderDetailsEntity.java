@@ -14,9 +14,11 @@ public class CreatedOrderDetailsEntity {
     public CreatedOrderDetailsEntity() {
     }
 
-    public CreatedOrderDetailsEntity(String serialId, Integer count) {
+
+    public CreatedOrderDetailsEntity(String serialId, Integer count, CreatedOrderEntity order) {
         this.serialId = serialId;
         this.count = count;
+        this.order = order;
     }
 
     @Id

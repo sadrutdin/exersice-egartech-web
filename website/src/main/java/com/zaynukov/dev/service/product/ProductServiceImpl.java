@@ -143,54 +143,45 @@ class ProductServiceImpl implements ProductService {
         orderRepository.deleteAll();
         orderDetailsRepository.deleteAll();
 
-        Iterable<CreatedOrderDetailsEntity> d1 = orderDetailsRepository.saveAll(asList(
-                new CreatedOrderDetailsEntity("serial-1", 10),
-                new CreatedOrderDetailsEntity("serial-3", 33)
-        ));
-
-        Iterable<CreatedOrderDetailsEntity> d2 = orderDetailsRepository.saveAll(asList(
-                new CreatedOrderDetailsEntity("serial-2", 10),
-                new CreatedOrderDetailsEntity("serial-3", 89),
-                new CreatedOrderDetailsEntity("serial-1", 89),
-                new CreatedOrderDetailsEntity("serial-4", 66)
-        ));
-
-        Iterable<CreatedOrderDetailsEntity> d3 = orderDetailsRepository.saveAll(asList(
-                new CreatedOrderDetailsEntity("serial-1", 15),
-                new CreatedOrderDetailsEntity("serial-5", 579),
-                new CreatedOrderDetailsEntity("serial-6", 1),
-                new CreatedOrderDetailsEntity("serial-7", 5)
-        ));
 
         long thisTime = System.currentTimeMillis();
 
 
-        List<CreatedOrderEntity> orders = new ArrayList<>();
-        orders.add(new CreatedOrderEntity(
+        CreatedOrderEntity o1 = orderRepository.save(new CreatedOrderEntity(
                 "Алексей",
                 "Екатеринбург",
-                8100L,
-                new Date(thisTime - 10200),
-                d1
+                81000L,
+                new Date(thisTime - 10200)
         ));
 
-        orders.add(new CreatedOrderEntity(
+        CreatedOrderEntity o2 = orderRepository.save(new CreatedOrderEntity(
                 "Герман",
                 "Никополь",
                 2000L,
-                new Date(thisTime - 26500),
-                d2
+                new Date(thisTime - 26500)
         ));
 
-        orders.add(new CreatedOrderEntity(
+        CreatedOrderEntity o3 = orderRepository.save(new CreatedOrderEntity(
                 "Марина",
                 "Ярославль",
                 3500L,
-                new Date(thisTime - 69020),
-                d3
+                new Date(thisTime - 69020)
         ));
 
-        orderRepository.saveAll(orders);
+
+        orderDetailsRepository.saveAll(asList(
+                new CreatedOrderDetailsEntity("serial-1", 10, o1),
+                new CreatedOrderDetailsEntity("serial-3", 33, o1),
+                new CreatedOrderDetailsEntity("serial-2", 10, o2),
+                new CreatedOrderDetailsEntity("serial-3", 89, o2),
+                new CreatedOrderDetailsEntity("serial-1", 89, o2),
+                new CreatedOrderDetailsEntity("serial-4", 66, o2),
+                new CreatedOrderDetailsEntity("serial-1", 15, o3),
+                new CreatedOrderDetailsEntity("serial-5", 50, o3),
+                new CreatedOrderDetailsEntity("serial-6", 16, o3),
+                new CreatedOrderDetailsEntity("serial-7", 57, o3)
+        ));
+
     }
 
 

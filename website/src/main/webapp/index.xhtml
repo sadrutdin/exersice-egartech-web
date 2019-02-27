@@ -4,8 +4,7 @@
 -->
 <!DOCTYPE html>
 
-<html xmlns:h="http://java.sun.com/jsf/html" xmlns:prime="http://primefaces.org/ui"
-      xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://java.sun.com/jsf/core">
+<html xmlns:h="http://java.sun.com/jsf/html" xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://java.sun.com/jsf/core">
 
 
 <h:head>
@@ -20,14 +19,11 @@
 
     <b:container>
 
-        <b:commandButton action="#?load=true" />
-
-
 
         <h:form id="that_form">
 
 
-            <b:commandButton action="#?load=true}" value="Загрузить подробные данные"/>
+            <b:commandButton action="#?load=true" value="Загрузить подробные данные"/>
 
 
             <b:dataTable id="main" var="o" value="#{IndexBean.orders}">
@@ -71,8 +67,6 @@
 
             </b:dataTable>
         </h:form>
-
-
 
 
     </b:container>

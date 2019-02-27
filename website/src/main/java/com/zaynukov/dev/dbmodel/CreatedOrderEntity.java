@@ -19,24 +19,14 @@ public class CreatedOrderEntity {
     public CreatedOrderEntity() {
     }
 
-    public CreatedOrderEntity(String customerName, String customerAddress, long sum, Date createdDatetime, List<CreatedOrderDetailsEntity> details) {
+    public CreatedOrderEntity(String customerName, String customerAddress, long sum, Date createdDatetime) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.sum = sum;
         this.createdDatetime = createdDatetime;
-        this.details = details;
     }
 
-    public CreatedOrderEntity(String customerName, String customerAddress, long sum, Date createdDatetime, Iterable<CreatedOrderDetailsEntity> iterDetails) {
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.sum = sum;
-        this.createdDatetime = createdDatetime;
 
-        List<CreatedOrderDetailsEntity> t = new ArrayList<>();
-        for (CreatedOrderDetailsEntity d : iterDetails) t.add(d);
-        if (!t.isEmpty()) details = t;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
