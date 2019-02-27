@@ -142,6 +142,7 @@ class ProductServiceImpl implements ProductService {
     public void init() {
         orderRepository.deleteAll();
         orderDetailsRepository.deleteAll();
+        productInfoRepository.deleteAll();
 
 
         long thisTime = System.currentTimeMillis();

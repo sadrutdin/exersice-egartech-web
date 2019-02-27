@@ -23,7 +23,7 @@
         <h:form id="that_form">
 
 
-            <b:commandButton action="#?load=true" value="Загрузить подробные данные"/>
+            <b:commandButton action="#{IndexBean.loadXml}" value="Загрузить подробные данные"/>
 
 
             <b:dataTable id="main" var="o" value="#{IndexBean.orders}">

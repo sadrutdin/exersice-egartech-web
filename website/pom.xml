@@ -24,7 +24,7 @@
         <java.version>8</java.version>
         <joinfaces.version>4.0.1</joinfaces.version>
         <project.basedir>website/</project.basedir>
-        <start-class>com.zaynukov.dev.SpringBootRunner</start-class>
+        <start-class>com.zaynukov.dev.SiteRunner</start-class>
     </properties>
 
     <dependencies>

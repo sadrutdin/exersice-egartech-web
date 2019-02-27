@@ -23,7 +23,7 @@
     <properties>
         <java.version>1.8</java.version>
         <project.basedir>webservice/</project.basedir>
-        <start-class>com.zaynukov.dev.webservice.WsApplication</start-class>
+        <start-class>com.zaynukov.dev.webservice.WSRunner</start-class>
     </properties>
 
     <dependencies>
