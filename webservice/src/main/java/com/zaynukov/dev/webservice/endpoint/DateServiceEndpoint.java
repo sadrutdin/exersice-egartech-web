@@ -1,8 +1,8 @@
 package com.zaynukov.dev.webservice.endpoint;
 
+import com.zaynukov.dev.webservice.service.DateTimeService;
 import com.zaynukov.dev.webservice.ws.request.GetCurrentDateTimeRequest;
 import com.zaynukov.dev.webservice.ws.response.GetCurrentDateTimeResponse;
-import com.zaynukov.dev.webservice.service.DateTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -24,6 +24,7 @@ public class DateServiceEndpoint {
         this.dateTimeService = dateTimeService;
     }
 
+    @SuppressWarnings("unused")
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetCurrentDateTimeRequest")
     @ResponsePayload
     public GetCurrentDateTimeResponse getCurrentDateTime(@RequestPayload GetCurrentDateTimeRequest request) {

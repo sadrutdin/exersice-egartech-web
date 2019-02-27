@@ -230,8 +230,7 @@
             </plugin>
 
 
-            <!--
-            <plugin>
+            <!--<plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
                 <version>0.14.0</version>
@@ -244,15 +243,14 @@
                 </executions>
                 <configuration>
                     <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>com.zaynukov.dev.ws.currentdatetime.test</generatePackage>
+                    <generatePackage>com.zaynukov.dev.ws.currentdatetime.obj</generatePackage>
                     <schemas>
                         <schema>
                             <url>http://127.0.0.1:8080/ws/GetCurrentDateTime.wsdl</url>
                         </schema>
                     </schemas>
                 </configuration>
-            </plugin>
-           -->
+            </plugin>-->
 
 
         </plugins>

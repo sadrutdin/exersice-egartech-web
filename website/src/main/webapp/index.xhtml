@@ -19,14 +19,24 @@
 
     <b:container>
 
+        <h:form>
 
-        <h:form id="that_form">
+            <h:commandButton value="Текущее время">
+                <f:ajax render="currentDateTimeComponent"/>
+            </h:commandButton>
 
 
-            <b:commandButton action="#{IndexBean.loadXml}" value="Загрузить подробные данные"/>
+            <b:label id="currentDateTimeComponent" value="#{indexJsfBean.updateCurrentTime}"/>
+
+        </h:form>
+
+        <h:form>
 
 
-            <b:dataTable id="main" var="o" value="#{IndexBean.orders}">
+            <b:commandButton action="#{indexJsfBean.loadXml}" value="Загрузить подробные данные"/>
+
+
+            <b:dataTable id="main" var="o" value="#{indexJsfBean.orders}">
                 <f:facet name="header">
                     <tr>
                         <th>ID заказа</th>
