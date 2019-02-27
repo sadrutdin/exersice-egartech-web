@@ -1,7 +1,7 @@
 package com.zaynukov.dev.ws.currentdatetime;
 
-import com.zaynukov.dev.ws.currentdatetime.obj.GetCurrentDateTimeResponseType;
+import com.zaynukov.dev.ws.currentdatetime.obj.response.GetCurrentDateTimeResponse;
 
 public interface DateTimeWsClientService {
-    GetCurrentDateTimeResponseType getCurrentDateTime(String timeZone);
+    GetCurrentDateTimeResponse getCurrentDateTime(String timeZone);
 }

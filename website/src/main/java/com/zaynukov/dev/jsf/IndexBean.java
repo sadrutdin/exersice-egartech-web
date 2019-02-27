@@ -39,8 +39,11 @@ public class IndexBean implements Serializable {
     }
 
     public String getUpdateCurrentTime() {
-        String dt = dateTimeService.getCurrentDateTime("UTC+3").getCurrentDateTime();
-        return "Текущие дата и время: " + dt;
+        try {
+            return "Текущие дата и время: " + dateTimeService.getCurrentDateTime("UTC+3").getCurrentDateTime();
+        } catch (Exception e) {
+            return "Нет соединения с веб-сервисом получения времени";
+        }
     }
 
 //    public void setOrders(List<OrderDTO> orders) {

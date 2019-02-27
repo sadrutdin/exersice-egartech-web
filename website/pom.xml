@@ -73,23 +73,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.joinfaces</groupId>
-            <artifactId>bootsfaces-spring-boot-starter</artifactId>
-            <version>4.0.3</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>all-themes</artifactId>
             <version>1.0.8</version>
             <scope>compile</scope>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -108,57 +95,6 @@
             <artifactId>jibx-extras</artifactId>
             <version>${jibx.v}</version>
         </dependency>
-
-        <!--<dependency>-->
-        <!--<groupId>org.apache.bcel</groupId>-->
-        <!--<artifactId>bcel</artifactId>-->
-        <!--<version>6.3</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-        <!--<groupId>javax</groupId>-->
-        <!--<artifactId>javaee-web-api</artifactId>-->
-        <!--<version>8.0</version>-->
-        <!--</dependency>-->
-
-
-        <!-- https://mvnrepository.com/artifact/wsdl4j/wsdl4j -->
-        <!--<dependency>-->
-        <!--<groupId>wsdl4j</groupId>-->
-        <!--<artifactId>wsdl4j</artifactId>-->
-        <!--<version>1.6.3</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>com.sun.xml.bind</groupId>-->
-        <!--<artifactId>jaxb-core</artifactId>-->
-        <!--<version>2.2.7</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>com.sun.xml.bind</groupId>-->
-        <!--<artifactId>jaxb-impl</artifactId>-->
-        <!--<version>2.2.7</version>-->
-        <!--</dependency>-->
-
-
-        <!--XML dependencies-->
-
-        <!--<dependency>-->
-        <!--<groupId>javax.xml.bind</groupId>-->
-        <!--<artifactId>jaxb-api</artifactId>-->
-        <!--<version>2.3.1</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>javax.activation</groupId>-->
-        <!--<artifactId>activation</artifactId>-->
-        <!--<version>1.1.1</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.glassfish.jaxb</groupId>-->
-        <!--<artifactId>jaxb-runtime</artifactId>-->
-        <!--<version>2.3.2</version>-->
-        <!--</dependency>-->
-
-        <!---->
 
     </dependencies>
 

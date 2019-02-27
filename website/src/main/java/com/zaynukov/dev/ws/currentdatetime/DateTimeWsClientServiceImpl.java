@@ -1,47 +1,43 @@
 package com.zaynukov.dev.ws.currentdatetime;
 
-import com.zaynukov.dev.ws.currentdatetime.obj.GetCurrentDateTimeRequestType;
-import com.zaynukov.dev.ws.currentdatetime.obj.GetCurrentDateTimeResponseType;
+import com.zaynukov.dev.ws.currentdatetime.obj.request.GetCurrentDateTimeRequest;
+import com.zaynukov.dev.ws.currentdatetime.obj.response.GetCurrentDateTimeResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.oxm.Marshaller;
-import org.springframework.oxm.Unmarshaller;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+import org.springframework.stereotype.Service;
+import org.springframework.ws.client.core.WebServiceTemplate;
 
-import javax.xml.bind.JAXBElement;
+import javax.annotation.PostConstruct;
 
-//@Service
+@Service
 public class DateTimeWsClientServiceImpl
-        extends WebServiceGatewaySupport
         implements DateTimeWsClientService, java.io.Serializable {
 
-    public DateTimeWsClientServiceImpl(String defaultUri, Marshaller marshaller, Unmarshaller unmarshaller) {
-        super.setDefaultUri(defaultUri);
-        super.setMarshaller(marshaller);
-        super.setUnmarshaller(unmarshaller);
-    }
+    @PostConstruct
+    private void init() {
+        dateTimeServiceTemplate.setDefaultUri("http://127.0.0.1:8080/ws");
 
-    public DateTimeWsClientServiceImpl(String defaultUri, Jaxb2Marshaller marshallerAndUnmarshaller) {
-        this(defaultUri, marshallerAndUnmarshaller, marshallerAndUnmarshaller);
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        Jaxb2Marshaller unmarshaller = new Jaxb2Marshaller();
+
+        marshaller.setContextPaths("com.zaynukov.dev.ws.currentdatetime.obj.request");
+        unmarshaller.setContextPath("com.zaynukov.dev.ws.currentdatetime.obj.response");
+
+        dateTimeServiceTemplate.setMarshaller(marshaller);
+        dateTimeServiceTemplate.setUnmarshaller(unmarshaller);
     }
 
     private static final Logger log = LoggerFactory.getLogger(DateTimeWsClientServiceImpl.class);
 
+    private WebServiceTemplate dateTimeServiceTemplate = new WebServiceTemplate();
+
     @Override
-    public GetCurrentDateTimeResponseType getCurrentDateTime(String timeZone) {
-        GetCurrentDateTimeRequestType request = new GetCurrentDateTimeRequestType();
-        request.setTimeZone(timeZone);
+    public GetCurrentDateTimeResponse getCurrentDateTime(String timeZone) {
+        GetCurrentDateTimeRequest request = new GetCurrentDateTimeRequest(timeZone);
 
         log.info("Requesting location for '" + timeZone + '\'');
 
-        //noinspection unchecked
-        JAXBElement<GetCurrentDateTimeResponseType> obj =
-                (JAXBElement<GetCurrentDateTimeResponseType>) super.getWebServiceTemplate()
-                        .marshalSendAndReceive(
-                                "http://127.0.0.1:8080/ws",
-                                request //, new SoapActionCallback("http://127.0.0.1:8080/ws/GetCurrentDateTimeRequest")
-                        );
-        return obj.getValue();
+        return (GetCurrentDateTimeResponse) dateTimeServiceTemplate.marshalSendAndReceive(request);
     }
 }
