@@ -26,7 +26,7 @@ public class DateServiceEndpoint {
 
     @SuppressWarnings("unused")
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetCurrentDateTimeRequest")
-    @ResponsePayload
+    @ResponsePayload()
     public GetCurrentDateTimeResponse getCurrentDateTime(@RequestPayload GetCurrentDateTimeRequest request) {
         GetCurrentDateTimeResponse getCurrentDateTimeResponse = new GetCurrentDateTimeResponse();
         getCurrentDateTimeResponse.setCurrentDateTime(dateTimeService.getCurrentDateTime(request));
