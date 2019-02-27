@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://current-date-time.ws.dev.zaynukov.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://current-date-time.ws.dev.zaynukov.com" targetNamespace="http://current-date-time.ws.dev.zaynukov.com">
+  <wsdl:types>
+    <xs:schema xmlns="http://current-date-time.ws.dev.zaynukov.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://current-date-time.ws.dev.zaynukov.com"><xs:element name="GetCurrentDateTimeRequest" type="GetCurrentDateTimeRequestType"/><xs:complexType name="GetCurrentDateTimeRequestType"><xs:sequence><xs:element name="timeZone" type="xs:string"/></xs:sequence></xs:complexType><xs:element name="GetCurrentDateTimeResponse" type="GetCurrentDateTimeResponseType"/><xs:complexType name="GetCurrentDateTimeResponseType"><xs:sequence><xs:element name="currentDateTime" type="xs:string"/></xs:sequence></xs:complexType></xs:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCurrentDateTimeRequest">
+    <wsdl:part element="tns:GetCurrentDateTimeRequest" name="GetCurrentDateTimeRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCurrentDateTimeResponse">
+    <wsdl:part element="tns:GetCurrentDateTimeResponse" name="GetCurrentDateTimeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="GetCurrentDateTimePort">
+    <wsdl:operation name="GetCurrentDateTime">
+      <wsdl:input message="tns:GetCurrentDateTimeRequest" name="GetCurrentDateTimeRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:GetCurrentDateTimeResponse" name="GetCurrentDateTimeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetCurrentDateTimePortSoap11" type="tns:GetCurrentDateTimePort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetCurrentDateTime">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetCurrentDateTimeRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCurrentDateTimeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetCurrentDateTimePortService">
+    <wsdl:port binding="tns:GetCurrentDateTimePortSoap11" name="GetCurrentDateTimePortSoap11">
+      <soap:address location="http://127.0.0.1:8080/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,11 +1,6 @@
 package com.zaynukov.dev.dbmodel;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 @Entity
@@ -26,30 +21,16 @@ public class ProductInfoEntity {
     private String productDescription;
     @Basic
     @Column(name = "serial_date", nullable = true)
-    @Temporal(TemporalType.DATE)
-    private Date serialDate;
+    private String serialDate;
 
     public ProductInfoEntity() {
     }
 
-    public ProductInfoEntity(String serialId, String productName, String productDescription,Date  serialDate) {
+    public ProductInfoEntity(String serialId, String productName, String productDescription, String serialDate) {
         this.serialId = serialId;
         this.productName = productName;
         this.productDescription = productDescription;
         this.serialDate = serialDate;
-    }
-
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-    public ProductInfoEntity(String serialId, String productName, String productDescription,
-                             @DateTimeFormat(pattern = "dd/MM/yyyy") String serialDate) {
-        this.serialId = serialId;
-        this.productName = productName;
-        this.productDescription = productDescription;
-        try {
-            this.serialDate = sdf.parse(serialDate);
-        } catch (ParseException ignored) {
-        }
     }
 
     public long getId() {
@@ -84,11 +65,11 @@ public class ProductInfoEntity {
         this.productDescription = productDescription;
     }
 
-    public Date getSerialDate() {
+    public String getSerialDate() {
         return serialDate;
     }
 
-    public void setSerialDate(Date serialDate) {
+    public void setSerialDate(String serialDate) {
         this.serialDate = serialDate;
     }
 

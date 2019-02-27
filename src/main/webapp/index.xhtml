@@ -4,9 +4,8 @@
 -->
 <!DOCTYPE html>
 
-<html xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://java.sun.com/jsf/core"
->
+<html xmlns:h="http://java.sun.com/jsf/html" xmlns:prime="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://java.sun.com/jsf/core">
 
 
 <h:head>
@@ -18,9 +17,20 @@
 
 <h:body>
 
-    <b:container styleClass="mx-10 my-10">
-        <h:form>
-            <b:dataTable id="main" var="o" value="#{productServiceImpl.getProductList(0,10)}">
+
+    <b:container>
+
+        <b:commandButton action="#?load=true" />
+
+
+
+        <h:form id="that_form">
+
+
+            <b:commandButton action="#?load=true}" value="Загрузить подробные данные"/>
+
+
+            <b:dataTable id="main" var="o" value="#{IndexBean.orders}">
                 <f:facet name="header">
                     <tr>
                         <th>ID заказа</th>
@@ -28,7 +38,7 @@
                         <th>Адрес заказчика</th>
                         <th>Общая сумма заказа</th>
                         <th>Дата создания</th>
-                        <th>Список продуктов</th>
+                        <th>Список покупок</th>
                     </tr>
                 </f:facet>
                 <b:dataTableColumn value="#{o.orderId}" order="asc"/>
@@ -39,18 +49,32 @@
 
                 <b:dataTableColumn>
                     <b:dataTable var="p" value="#{o.productList}">
+
                         <f:facet name="header">
                             <tr>
                                 <th>Серийное ID продукта</th>
                                 <th>Количество</th>
+                                <th>Наименование продукта</th>
+                                <th>Описание</th>
+                                <th>Дата серийного выпуска</th>
                             </tr>
                         </f:facet>
+
                         <b:dataTableColumn value="#{p.serialId}"/>
                         <b:dataTableColumn value="#{p.count}"/>
+                        <b:dataTableColumn value="#{p.productName}"/>
+                        <b:dataTableColumn value="#{p.description}"/>
+                        <b:dataTableColumn value="#{p.date}"/>
+
                     </b:dataTable>
                 </b:dataTableColumn>
+
             </b:dataTable>
         </h:form>
+
+
+
+
     </b:container>
 
 </h:body>

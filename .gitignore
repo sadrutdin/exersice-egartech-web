@@ -11,5 +11,3 @@
 
 .idea
 **/*.iml
-
-!website/src/main/webapp

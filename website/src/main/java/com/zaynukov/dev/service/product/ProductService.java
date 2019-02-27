@@ -14,5 +14,5 @@ public interface ProductService {
      */
     List<OrderDTO> getProductList(int page, int size);
 
-    List<ProductItem> loadAndSaveProductInfo();
+    List<OrderDTO> loadAndGetProductList(int page, int size);
 }

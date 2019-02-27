@@ -1,6 +1,7 @@
 package com.zaynukov.dev.dbmodel;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -24,6 +25,17 @@ public class CreatedOrderEntity {
         this.sum = sum;
         this.createdDatetime = createdDatetime;
         this.details = details;
+    }
+
+    public CreatedOrderEntity(String customerName, String customerAddress, long sum, Date createdDatetime, Iterable<CreatedOrderDetailsEntity> iterDetails) {
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.sum = sum;
+        this.createdDatetime = createdDatetime;
+
+        List<CreatedOrderDetailsEntity> t = new ArrayList<>();
+        for (CreatedOrderDetailsEntity d : iterDetails) t.add(d);
+        if (!t.isEmpty()) details = t;
     }
 
     @Id

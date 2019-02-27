@@ -5,6 +5,9 @@ import java.util.Objects;
 public class ProductItemDTO {
     private String serialId;
     private String count;
+    private String productName = "Неизвестно";
+    private String description = "Неизвестно";
+    private String date = "Неизвестно";
 
 
     public ProductItemDTO() {
@@ -13,6 +16,14 @@ public class ProductItemDTO {
     public ProductItemDTO(String serialId, String count) {
         this.serialId = serialId;
         this.count = count;
+    }
+
+    public ProductItemDTO(String serialId, String count, String productName, String description, String date) {
+        this.serialId = serialId;
+        this.count = count;
+        this.productName = productName;
+        this.description = description;
+        this.date = date;
     }
 
     public String getSerialId() {
@@ -31,25 +42,55 @@ public class ProductItemDTO {
         this.count = count;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProductItemDTO productItemDTO = (ProductItemDTO) o;
-        return Objects.equals(serialId, productItemDTO.serialId) &&
-                Objects.equals(count, productItemDTO.count);
+        ProductItemDTO that = (ProductItemDTO) o;
+        return Objects.equals(serialId, that.serialId) &&
+                Objects.equals(count, that.count) &&
+                Objects.equals(productName, that.productName) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(date, that.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(serialId, count);
+        return Objects.hash(serialId, count, productName, description, date);
     }
 
     @Override
     public String toString() {
         return "ProductItemDTO{" +
-                "serialId='" + serialId + '\'' +
-                ", count='" + count + '\'' +
-                '}';
+                "serialId='" + serialId
+                + "', count='" + count
+                + "', productName='" + productName
+                + "', description='" + description
+                + "', date='" + date
+                + "'}";
     }
 }
