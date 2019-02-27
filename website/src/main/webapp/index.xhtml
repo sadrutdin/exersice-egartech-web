@@ -16,25 +16,19 @@
 
 <h:body>
 
-
     <b:container>
 
-        <h:form>
-
-            <h:commandButton value="Текущее время">
-                <f:ajax render="currentDateTimeComponent"/>
-            </h:commandButton>
-
-
-            <b:label id="currentDateTimeComponent" value="#{indexJsfBean.updateCurrentTime}"/>
-
-        </h:form>
 
         <h:form>
 
 
             <b:commandButton action="#{indexJsfBean.loadXml}" value="Загрузить подробные данные"/>
 
+            <b:commandButton value="Обновить время">
+                <f:ajax render="currentDateTimeComponent"/>
+            </b:commandButton>
+
+            <b:label id="currentDateTimeComponent" value="#{indexJsfBean.updateCurrentTime}"/>
 
             <b:dataTable id="main" var="o" value="#{indexJsfBean.orders}">
                 <f:facet name="header">
